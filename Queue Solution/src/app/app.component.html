@@ -1,0 +1,32 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+  <div class="navbar-nav navbar-left">
+    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img src="https://www.raiffeisen.al/images/uploads/default/RBalb.svg" width="172" height="51px" />
+    </a>
+
+</div>
+
+  <div class="navbar-nav navbar-right">
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a class="nav-item nav-link" routerLink="/queue-details" routerLinkActive="active">Details</a> 
+
+   <!--  <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a> --> 
+      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <alert></alert>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+  <p>
+      <a href="https://www.raiffeisen.al/alb/about/" target="_top">Rreth Nesh</a>
+  </p>
+  <p>
+      <a href="https://www.raiffeisen.al/alb/about/pages/kontakt/" target="_top">Kontakt</a>
+  </p>
+</div>

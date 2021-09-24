@@ -1,0 +1,60 @@
+
+  
+  <div>
+    <p class="h1">Lokalizo degen me te afert....</p>
+  </div>
+
+  <div class="ng-autocomplete">
+    <ng-autocomplete 
+      [data]="branches"
+      [searchKeyword]="keyword"
+      placeHolder="Enter the Branch Name"
+      (selected)='selectEvent($event)'
+      (inputChanged)='onChangeSearch($event)'
+      (inputFocused)='onFocused($event)'
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate">
+    </ng-autocomplete>
+  
+    <ng-template #itemTemplate let-item>
+      <a href="javascript:void(0)">
+          <span [innerHTML]="item.name"></span>
+      </a>
+  </ng-template>
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>  
+
+  <br />
+  <ul class="list-group">
+    <li class="list-group-item active">Per sherbimin: {{branchservice}} ju kurseni 100 leke ne Raiffeisen ON</li>
+    <li class="list-group-item" *ngIf="nearestBranch.latitude!=0">Degen me te afer keni  {{nearestBranch.name}}</li>
+
+  </ul>
+  <div class="my-google-map">
+    <google-map control="map.control" [width]="1000" [height]="400">
+      <ng-container *ngFor="let elem of markers">
+      <map-marker #marker="mapMarker" [position]="elem.position"  [title]="elem.title" [options]="elem.options" (mapClick)="openInfoWindow(marker, infoWindow)"></map-marker>
+
+      <map-info-window #infoWindow="mapInfoWindow">
+
+        <div id="container">
+          <!--This is a division tag for body container-->
+          <div id="body_header">
+            <!--This is a division tag for body header-->
+            <h1>Choose an appointment</h1>
+            <p>Make your appointments more easier</p>
+      
+          </div>
+            <button type="submit" (click)="createBook(elem.name)">Request For Appointment</button>
+          <form action="http://maps.google.com/maps" method="get" target="_blank">
+            <input type="hidden" name="daddr" [value]="elem.name" />
+            <button type="submit">Get directions</button>
+         </form>
+        </div>
+      </map-info-window>
+    </ng-container>
+    </google-map>
+  </div>
+  

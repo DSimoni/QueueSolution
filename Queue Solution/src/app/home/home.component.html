@@ -1,0 +1,13 @@
+<div class="p-4">
+    <div class="container">
+        <h1>Hi {{user.firstName}}!</h1>
+        <p>Welcome to Book Now:</p>
+      <!--  <p><a routerLink="/users">Manage Users</a></p> -->
+        <p><a routerLink="/booking">Book Now</a></p>
+    </div>
+    <div class="container" *ngIf="branchservice!=''">
+      <p class="text-success">Thanks for appointment,of service "{{branchservice}}" wait for number "{{ numberbooked}}""  in branch name: {{branchName}}.  <button type="button" class="btn btn-outline-danger" (click)="cancelAppoint()">Cancel Appointment</button>
+      </p>
+
+    </div>
+</div>
